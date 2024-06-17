@@ -4,7 +4,7 @@ import { PacienteService } from 'src/app/services/paciente.service';
 import {ActivatedRoute} from "@angular/router";
 import { Router } from '@angular/router';
 import {Usuario} from "../../../models/usuario";
-
+import {ToastrService} from "ngx-toastr";
 import {Turn} from "../../../models/turn";
 import {Professional} from "../../../models/professional";
 
@@ -23,7 +23,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private _pacienteService: PacienteService,
               private aRouter: ActivatedRoute,
-              private router: Router
+              private router: Router,
+              private toastr: ToastrService
   ) {
     this.formulario = new FormGroup(
       {
@@ -60,10 +61,12 @@ export class LoginComponent implements OnInit {
         this.showError = false;
         localStorage.setItem('token', this.usuario.token);
         localStorage.setItem('master', String(this.usuario.master));
-        localStorage.setItem('usuarioId', this.usuario.userId);;
-        this.router.navigate(['menu']);
+        localStorage.setItem('usuarioId', this.usuario.userId);
+        this.router.navigate(['inicio']);
+        this.toastr.success('Inicio de sesion exitoso!', 'Hola de nuevo!')
       }, error => {
         console.log(error)
+        this.toastr.error(error.error.message || 'Error al iniciar sesion', 'Error');
         this.showError = true;
       }
     )

@@ -19,7 +19,6 @@ export class AppComponent {
     }
     if (localStorage.getItem('master') != null) {
       this.master = localStorage.getItem('master');
-      ;
     } else {
       this.master = null;
     }
