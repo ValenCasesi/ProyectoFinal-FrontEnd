@@ -5,7 +5,7 @@
       <div class="card">
         <div class="card-body text-center table-responsive">
           <span class="titulo">Listado de Pacientes</span>
-          <button class="btn btn-success float-end" (click)="redireccion()">Nuevo</button>
+          <button class="btn btn-success float-end" (click)="redireccion()" style="display: none;">Nuevo</button>
           <div *ngIf="listPacientes; else nohay" class="row mt-3">
             <div *ngFor="let paciente of listPacientes" class="col-md-4 mb-3">
               <div class="card h-100">

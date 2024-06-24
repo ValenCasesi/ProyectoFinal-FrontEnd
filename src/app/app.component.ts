@@ -10,17 +10,21 @@ export class AppComponent {
   token: string | null = null;
   master: string | null = null;
   title = 'clinica';
+  nombre: string | null = null;
 
   ngOnInit(): void {
     if (localStorage.getItem('token') != null) {
       this.token = localStorage.getItem('token');
+      this.nombre = localStorage.getItem('nombre');
     } else {
       this.token = null;
     }
     if (localStorage.getItem('master') != null) {
       this.master = localStorage.getItem('master');
+      this.nombre = localStorage.getItem('nombre');
     } else {
       this.master = null;
+      this.nombre = localStorage.getItem('nombre');
     }
 
   }
@@ -28,6 +32,7 @@ export class AppComponent {
   cerrarSec(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('master');
+    localStorage.removeItem('nombre');
   }
 
 }

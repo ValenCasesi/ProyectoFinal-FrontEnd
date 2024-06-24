@@ -5,9 +5,10 @@ import {Injectable} from '@angular/core';
 })
 export class AuthService {
   private token: string | null = null;
-
+  private nombre: string | null = null;
   constructor() {
     this.token = localStorage.getItem('token');
+    this.nombre = localStorage.getItem('nombre');
   }
 
   setToken(token: string): void {
@@ -22,6 +23,7 @@ export class AuthService {
   logout(): void {
     this.token = null;
     localStorage.removeItem('token');
+    localStorage.removeItem('nombre');
   }
 
   isAuthenticated(): boolean {

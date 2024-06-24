@@ -64,7 +64,9 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('master', String(this.usuario.master));
         localStorage.setItem('nombre', String(this.usuario.nombre));
         localStorage.setItem('usuarioId', this.usuario.userId);
-        this.router.navigate(['inicio']);
+        this.router.navigate(['inicio']).then(() => {
+          window.location.reload();
+      });
         const nombre = localStorage.getItem('nombre'); // Recupera el nombre del usuario
         this.toastr.success(`¡Hola de nuevo, ${nombre}!`, 'Inicio de sesión exitoso');
       }, error => {
