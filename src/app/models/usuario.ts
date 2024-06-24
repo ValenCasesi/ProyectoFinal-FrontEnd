@@ -3,5 +3,5 @@ export interface Usuario {
   token: string;
   master: boolean;
   userId: string;
-
+  nombre: string;
 }

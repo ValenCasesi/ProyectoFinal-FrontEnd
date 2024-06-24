@@ -132,11 +132,11 @@ export class CreateTurnoComponent implements OnInit {
         practica: this.pid
       }
       this._turnoService.createTurno(turno).subscribe(res => {
-          this.toastr.success('The Turn has benn created successfully!', 'Turn Created!')
+          this.toastr.success('Turno registrado correctamente!', 'Turno registrado!')
         this.turnos = [];
       }, error => {
         console.log(error)
-        this.toastr.error(error.error.message || 'Error al registrar el professional', 'Error');
+        this.toastr.error(error.error.message || 'Error al registrar el turno', 'Error');
       })
     }
   }

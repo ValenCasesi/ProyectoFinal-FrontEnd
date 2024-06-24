@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TurnoService } from 'src/app/services/turno.service';
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-edit-turno',
@@ -16,7 +17,8 @@ export class EditTurnoComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private turnoService: TurnoService
+    private turnoService: TurnoService,
+    private toastr: ToastrService,
   ) {
     this.editTurnoForm = this.fb.group({
       costo: ['', Validators.required],
@@ -44,7 +46,8 @@ export class EditTurnoComponent implements OnInit {
   onSubmit(): void {
     if (this.editTurnoForm.valid) {
       this.turnoService.updateTurno(this.turnoId, this.editTurnoForm.value).subscribe(() => {
-        this.router.navigate(['/turnos']);
+        this.toastr.success('Turno actualizado correctamente!', 'Turno actualizado!');
+        this.router.navigate(['/list-turnos/65f0eea559f713b5d8584b1c']);
       });
     }
   }

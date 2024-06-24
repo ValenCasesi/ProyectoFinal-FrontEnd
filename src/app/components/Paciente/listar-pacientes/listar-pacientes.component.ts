@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import * as moment from 'moment';
 import {PacienteService} from "../../../services/paciente.service";
 import {Paciente} from "../../../models/paciente";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listar-pacientes',
@@ -13,8 +14,11 @@ export class ListarPacientesComponent implements OnInit {
   listPacientes: Paciente[] = [];
   token: string | null = null;
   master: string | null = null;
-  constructor(private _pacienteService: PacienteService,
-              private toastr: ToastrService) { }
+  constructor(
+              private _pacienteService: PacienteService,
+              private toastr: ToastrService,
+              private router: Router,
+            ) { }
 
   ngOnInit(): void {
     if(localStorage.getItem('token')!=null)
@@ -53,5 +57,9 @@ export class ListarPacientesComponent implements OnInit {
   formatDate(fecha: Date){
     return moment(fecha).utcOffset('0300').format('DD-MM-YYYY')
 
+  }
+
+  redireccion(): void {
+    this.router.navigate(['/crear-paciente']);
   }
 }

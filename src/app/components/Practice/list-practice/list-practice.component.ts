@@ -42,7 +42,7 @@ export class ListPracticeComponent implements OnInit {
 
   eliminarPractice(id: any) {
     this._practiceService.deletePractice(id).subscribe(data => {
-      this.toastr.error('El paciente fue eliminado con exito', 'Paciente Eliminado');
+      this.toastr.error('La práctica fue eliminada con exito', 'Prácitca Eliminada');
       this.obtenerPractice();
     }, error => {
       console.log(error);

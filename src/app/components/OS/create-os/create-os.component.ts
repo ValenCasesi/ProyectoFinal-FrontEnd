@@ -47,7 +47,7 @@ export class CreateOSComponent implements OnInit {
     this._osService.createOS(os).subscribe(
       res => {
         console.log(res);
-    this.toastr.success('The OS has been successfully created!', 'OS added!')
+    this.toastr.success('Obra Social agregada correctamente!', 'OS agregada!')
         this.router.navigate(['/list-os'])
     }, error => {
         console.log(error);
@@ -76,7 +76,7 @@ export class CreateOSComponent implements OnInit {
       imgURL: this.OSForm.get('imgURL')?.value
     }
     this._osService.updateOS(id, os).subscribe( res=> {
-      this.toastr.success('The OS was successfully updated', 'OS Updated!')
+      this.toastr.success('Obra social actualizada correctamente!', 'OS Actualizada!')
       this.router.navigate(['/list-os'])
     }, error => {
       console.log(error);

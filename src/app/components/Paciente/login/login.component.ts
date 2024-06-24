@@ -21,7 +21,8 @@ export class LoginComponent implements OnInit {
   master: string | null = null;
   userId: string | null = null;
 
-  constructor(private _pacienteService: PacienteService,
+  constructor(
+              private _pacienteService: PacienteService,
               private aRouter: ActivatedRoute,
               private router: Router,
               private toastr: ToastrService
@@ -61,9 +62,11 @@ export class LoginComponent implements OnInit {
         this.showError = false;
         localStorage.setItem('token', this.usuario.token);
         localStorage.setItem('master', String(this.usuario.master));
+        localStorage.setItem('nombre', String(this.usuario.nombre));
         localStorage.setItem('usuarioId', this.usuario.userId);
         this.router.navigate(['inicio']);
-        this.toastr.success('Inicio de sesion exitoso!', 'Hola de nuevo!')
+        const nombre = localStorage.getItem('nombre'); // Recupera el nombre del usuario
+        this.toastr.success(`¡Hola de nuevo, ${nombre}!`, 'Inicio de sesión exitoso');
       }, error => {
         console.log(error)
         this.toastr.error(error.error.message || 'Error al iniciar sesion', 'Error');
