@@ -11,7 +11,7 @@
       <div class="jl-danau-bratan">
         Argentina, Rosario, Zeballos 13553
       </div>
-      <div style="margin:auto;text-align: center;">Bienvenido, <b>{{ nombre }}</b>!</div>
+      <div style="margin:auto;text-align: center;" *ngIf="token !== null">Bienvenido, <b>{{ nombre }}</b>!</div>
     </div>
     
     <div class="icon-list-2">
@@ -60,8 +60,8 @@
             <nav class="menu">
               <div class="home1"><a class="nav-item nav-link text-dark aa" href="inicio">Inicio</a></div>
               <div class="home1"><a class="nav-item nav-link text-dark aa" href="list-professional">Profesionales</a></div>
-              <div class="about-us"><a class="nav-item nav-link text-dark aa" [routerLink]="['/list-turnos', '65f0eea559f713b5d8584b1c']">Turnos</a></div>
-              <div class="services"><a class="nav-item nav-link text-dark aa" href="list-paciente">Pacientes</a></div>
+              <div class="about-us"><a class="nav-item nav-link text-dark aa" *ngIf="this.master=='true'" [routerLink]="['/list-turnos', '65f0eea559f713b5d8584b1c']">Turnos</a></div>
+              <div class="services"><a class="nav-item nav-link text-dark aa" *ngIf="this.master=='true'" href="list-paciente">Pacientes</a></div>
               <div class="page"><a class="nav-item nav-link text-dark aa" href="list-practice">Practicas</a></div>
               <div class="contact-us"><a class="nav-item nav-link text-dark aa" href="list-os">Obra Sociales</a></div>
             </nav>

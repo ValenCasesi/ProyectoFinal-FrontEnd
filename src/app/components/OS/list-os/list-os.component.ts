@@ -25,7 +25,7 @@ export class ListOSComponent implements OnInit {
     }
     if (localStorage.getItem('master') != null) {
       this.master = localStorage.getItem('master');
-      ;
+      
     } else {
       this.master = null;
     }
