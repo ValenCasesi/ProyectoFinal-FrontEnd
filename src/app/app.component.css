@@ -73,10 +73,11 @@
 .logo-and-menu {
     align-self: stretch;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 31.5px;
 }
 .logo-wrapper {
-    width: 703px;
+    width: 100%;
     flex-direction: column;
     padding: var(--padding-7xs) 0 0;
     box-sizing: border-box;
@@ -119,6 +120,18 @@
     justify-content: flex-start;
     gap: var(--gap-3xs);
 }
+.button1 {
+    cursor: pointer;
+    border: 0;
+    padding: var(--padding-xl) var(--padding-15xl) var(--padding-xl)
+      var(--padding-21xl);
+    background-color: var(--color-darkslategray-100);
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: var(--gap-3xs);
+}
 .header,
 .header-bottom,
 .header-bottom1 {
@@ -142,6 +155,7 @@
     justify-content: center;
     padding: 0 var(--padding-xl);
     font-size: var(--heading-4-size);
+    flex-wrap: wrap;
 }
 .header {
     background-color: var(--white);
@@ -302,3 +316,86 @@
     align-items: flex-start;
     max-width: 100%;
 }
+
+/* header.component.css */
+
+.header {
+    position: relative;
+    background-color: var(--white);
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 0 0 36px;
+    gap: 36px;
+    text-align: left;
+    font-size: var(--body-3-size);
+    color: var(--primary);
+    font-family: var(--body-3);
+  }
+  
+  .menu-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* El menú está oculto en pantallas pequeñas por defecto */
+  .menu {
+    display: flex; /* Mostrar el menú en pantallas grandes */
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gap-xl);
+    text-align: center;
+    font-size: var(--body-2-size);
+    color: var(--primary);
+    font-family: var(--body-3);
+  }
+  
+  /* Agregar el estilo para el menú desplegable */
+  .menu.expanded {
+    display: flex; /* Mostrar el menú cuando se expanda en pantallas pequeñas */
+    flex-direction: column;
+    gap: var(--gap-xl);
+  }
+  
+  /* Estilo del botón de hamburguesa en pantallas pequeñas */
+  .button1 {
+    display: none; /* Ocultar el botón de menú en pantallas grandes */
+    /* Otros estilos existentes */
+  }
+  
+  /* Estilos para el menú y el botón de hamburguesa en pantallas pequeñas */
+  @media (max-width: 1145px) {
+    .button1 {
+      display: flex;
+    }
+  
+    .menu {
+      display: none; /* Ocultar el menú en pantallas pequeñas */
+    }
+  
+    .menu.expanded {
+      display: flex; /* Mostrar el menú cuando se expanda */
+    }
+  
+    .header-expanded {
+      margin-bottom: 10px; /* Ajusta el tamaño según tus necesidades */
+    }
+  }
+  
+  /* Asegúrate de que el menú esté siempre visible en pantallas grandes */
+  @media (min-width: 1145px) {
+    .header-expanded {
+      margin-bottom: 0; /* Restablece el margin-bottom para pantallas grandes */
+    }
+  
+    
+  
+    .button1 {
+      display: none; /* Ocultar el botón de hamburguesa en pantallas grandes */
+    }
+  }
+
+ 
+  
+  
