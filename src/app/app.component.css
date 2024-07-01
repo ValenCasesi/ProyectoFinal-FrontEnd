@@ -203,10 +203,10 @@
     align-self: stretch;
     background-color: var(--aquamarine);
     overflow: hidden;
-    justify-content: center;
+    justify-content:space-evenly;
     padding: var(--padding-5xl) var(--padding-xl);
     box-sizing: border-box;
-    gap: 431px;
+    flex-wrap: wrap;
 }
 
 .header-top,
