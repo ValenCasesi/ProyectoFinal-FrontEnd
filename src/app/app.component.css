@@ -123,9 +123,7 @@
 .button1 {
     cursor: pointer;
     border: 0;
-    padding: var(--padding-xl) var(--padding-15xl) var(--padding-xl)
-      var(--padding-21xl);
-    background-color: var(--color-darkslategray-100);
+    padding: var(--padding-xl) var(--padding-15xl) var(--padding-xl) var(--padding-21xl);
     display: flex;
     flex-direction: row;
     align-items: flex-start;
