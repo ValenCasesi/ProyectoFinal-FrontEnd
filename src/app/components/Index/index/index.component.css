@@ -1681,7 +1681,7 @@
     max-width: 100%;
 }
 .terms-of-use {
-    width: 88px;
+    width: 105px;
     position: relative;
     line-height: 160%;
     display: inline-block;
@@ -1703,7 +1703,7 @@
     box-sizing: border-box;
 }
 .privacy-policy {
-    width: 92px;
+    width: 150px;
     position: relative;
     line-height: 160%;
     display: inline-block;

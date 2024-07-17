@@ -168,10 +168,10 @@
     font-family: var(--body-3);
 }
 .happy {
-    font-weight: 800;
+    font-weight: 900;
 }
 .dental {
-    font-weight: 300;
+    font-weight: 400;
 }
 .happydental {
     margin: 0;
@@ -180,6 +180,7 @@
     line-height: 160%;
     white-space: nowrap;
     font-family: inherit;
+    font-size: 1.5rem;
 }
 .logo-separator {
     width: 1px;

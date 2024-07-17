@@ -49,41 +49,47 @@
     <div class="header-bottom1">
       <div class="logo-wrapper">
         <div class="logo-and-menu" >
-          <img width="55" height="55" src="https://img.icons8.com/clouds/100/tooth.png" alt="tooth"/>
-          <h1 class="happydental">
-            <span class="happy">HAPPY</span>
-            <span class="dental">DENTAL</span>
-          </h1>
-          <div class="logo-separator-wrapper">
-            <div class="logo-separator"></div>
-          </div>
+          
+
           <button class="button1" (click)="toggleMenu()">
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="" d="M3 18h18v-2H3zm0-5h18v-2H3zm0-7v2h18V6z"/></svg>
           </button>
           
           <nav [class.show]="menuOpen" class="menu-wrapper" >
+            
             <nav class="menu">
+              <img width="75" height="75" src="https://img.icons8.com/clouds/100/tooth.png" alt="tooth"/>
+            <h1 class="happydental">
+              <span class="happy">HAPPY</span>
+              <span class="dental">DENTAL</span>
+            </h1>
+            <div class="logo-separator-wrapper">
+              <div class="logo-separator"></div>
+            </div>
               <div class="home1"><a class="nav-item nav-link text-dark aa" href="inicio">Inicio</a></div>
               <div class="home1"><a class="nav-item nav-link text-dark aa" href="list-professional">Profesionales</a></div>
               <div class="about-us"><a class="nav-item nav-link text-dark aa" *ngIf="this.master=='true'" [routerLink]="['/list-turnos', '65f0eea559f713b5d8584b1c']">Turnos</a></div>
               <div class="services"><a class="nav-item nav-link text-dark aa" *ngIf="this.master=='true'" href="list-paciente">Pacientes</a></div>
               <div class="page"><a class="nav-item nav-link text-dark aa" href="list-practice">Practicas</a></div>
               <div class="contact-us"><a class="nav-item nav-link text-dark aa" href="list-os">Obra Sociales</a></div>
+              <div class="home1">
+                <button class="button" >
+                  <div class="appointment-button-label">
+                    <div class="make-appointment" >
+                      <a *ngIf="token==null" class="nav-item nav-link text-light ms-auto aa" href="login">Iniciar Sesion</a>
+                      <a *ngIf="token!=null" (click)="cerrarSec()" class="nav-item nav-link text-light ms-auto aa" href="#">Cerrar Sesion</a>
+                    </div>
+                  </div>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12H19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 5L19 12L12 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
             </nav>
            
           </nav>
-          <button class="button" >
-            <div class="appointment-button-label">
-              <div class="make-appointment" >
-                <a *ngIf="token==null" class="nav-item nav-link text-light ms-auto aa" href="login">Log In</a>
-                <a *ngIf="token!=null" (click)="cerrarSec()" class="nav-item nav-link text-light ms-auto aa" href="#">Log Out</a>
-              </div>
-            </div>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5 12H19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M12 5L19 12L12 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
+          
         </div>
       </div>
       

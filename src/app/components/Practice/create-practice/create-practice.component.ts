@@ -12,7 +12,7 @@ import {PracticeService} from 'src/app/services/practice.service';
 })
 export class CreatePracticeComponent implements OnInit {
   practiceForm: FormGroup;
-  titulo = 'Crear practice';
+  titulo = 'Crear practica';
   id: string | null;
   token: string | null = null;
   master: string | null = null;

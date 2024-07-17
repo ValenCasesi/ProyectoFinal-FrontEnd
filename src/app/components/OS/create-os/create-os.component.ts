@@ -14,7 +14,7 @@ import {__importDefault} from "tslib";
 export class CreateOSComponent implements OnInit {
   OSForm: FormGroup;
 
-  titulo= 'Crete OS';
+  titulo= 'Crear Nueva Obra Social';
   _id: String | null;
   constructor(private fb: FormBuilder,
               private router: Router,
@@ -57,7 +57,7 @@ export class CreateOSComponent implements OnInit {
 
   isEdit(){
     if (this._id!==null){
-      this.titulo= 'Edit OS';
+      this.titulo= 'Editar Obra Social';
       this._osService.getOS(this._id).subscribe(
         data=>{
           this.OSForm.setValue({
