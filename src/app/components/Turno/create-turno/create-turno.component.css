@@ -20,3 +20,6 @@
   right: 10px;
   transform: translateY(-50%);
 }
+.card-title{
+  font-weight: bold;
+}

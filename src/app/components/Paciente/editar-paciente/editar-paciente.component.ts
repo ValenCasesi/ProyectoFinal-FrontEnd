@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
@@ -6,13 +6,14 @@ import {Paciente} from 'src/app/models/paciente';
 import {PacienteService} from 'src/app/services/paciente.service';
 
 @Component({
-  selector: 'app-crear-paciente',
-  templateUrl: './crear-paciente.component.html',
-  styleUrls: ['./crear-paciente.component.css']
+  selector: 'app-editar-paciente',
+  templateUrl: './editar-paciente.component.html',
+  styleUrls: ['./editar-paciente.component.css']
 })
-export class CrearPacienteComponent implements OnInit {
+export class EditarPacienteComponent implements OnInit {
+
   pacienteForm: FormGroup;
-  titulo = 'Crear paciente';
+  titulo = 'Editar Paciente';
   id: string | null;
   token: string | null = null;
   master: string | null = null;
@@ -44,64 +45,18 @@ export class CrearPacienteComponent implements OnInit {
     }
     if (localStorage.getItem('master') != null) {
       this.master = localStorage.getItem('master');
-      ;
+      
     } else {
       this.master = null;
     }
-    this.esEditar();
+    this.seteoForm();
   }
-
-  agregarPaciente() {
-
-    const PACIENTE: Paciente = {
-      dni: this.pacienteForm.get('dni')?.value,
-      nombre: this.pacienteForm.get('nombre')?.value,
-      apellido: this.pacienteForm.get('apellido')?.value,
-      telefono: this.pacienteForm.get('telefono')?.value,
-      mail: this.pacienteForm.get('mail')?.value,
-      direccion: this.pacienteForm.get('direccion')?.value,
-      fecha_nac: this.pacienteForm.get('fecha_nac')?.value,
-      password: this.pacienteForm.get('password')?.value,
-    }
-
-    this._pacienteService.guardarPaciente(PACIENTE).subscribe(data => {
-      this.toastr.success('El paciente fue registrado con exito!', 'Paciente Registrado!');
-      this.router.navigate(['/list-paciente']);
-    }, error => {
-      console.log(error);
-      this.pacienteForm.reset();
-      this.toastr.error(error.error.message || 'Error al registrar el professional', 'Error');
-    })
-
-
-  }
-
-  updatePaciente(id: any) {
-    const PACIENTE: Paciente = {
-      dni: this.pacienteForm.get('dni')?.value,
-      nombre: this.pacienteForm.get('nombre')?.value,
-      apellido: this.pacienteForm.get('apellido')?.value,
-      telefono: this.pacienteForm.get('telefono')?.value,
-      mail: this.pacienteForm.get('mail')?.value,
-      direccion: this.pacienteForm.get('direccion')?.value,
-      fecha_nac: this.pacienteForm.get('fecha_nac')?.value,
-      password: this.pacienteForm.get('password')?.value,
-    }
-    this._pacienteService.updatePaciente(id, PACIENTE).subscribe(data => {
-      this.toastr.success('El paciente fue actualizado con exito!', 'Paciente Registrado!');
-      this.router.navigate(['/list-paciente']);
-    }, error => {
-      console.log(error);
-      this.pacienteForm.reset();
-      
-    })
-  }
-
-  esEditar() {
-
+  
+  seteoForm() {
     if (this.id !== null) {
-      this.titulo = 'Editar producto';
       this._pacienteService.obtenerPaciente(this.id).subscribe(data => {
+        const fechaOriginal = new Date(data.fecha_nac);
+        const fechaFormateada = new Date(fechaOriginal.getTime() - fechaOriginal.getTimezoneOffset() * 60000).toISOString().substring(0, 10);
         this.pacienteForm.patchValue({
           dni: data.dni,
           nombre: data.nombre,
@@ -110,9 +65,41 @@ export class CrearPacienteComponent implements OnInit {
           mail: data.mail,
           direccion: data.direccion,
           password: data.password,
+          fecha_nac: fechaFormateada,
         })
       })
     }
   }
+
+  updatePaciente(id: any) {
+    // Obtener la fecha desde el formulario
+    const fechaNacForm = this.pacienteForm.get('fecha_nac')?.value;
+  
+    // Ajustar la fecha para evitar que se guarde con un día menos
+    const fechaNacAjustada = new Date(fechaNacForm);
+    fechaNacAjustada.setMinutes(fechaNacAjustada.getMinutes() + fechaNacAjustada.getTimezoneOffset());
+  
+    // Crear el objeto PACIENTE con la fecha ajustada
+    const PACIENTE: Paciente = {
+      dni: this.pacienteForm.get('dni')?.value,
+      nombre: this.pacienteForm.get('nombre')?.value,
+      apellido: this.pacienteForm.get('apellido')?.value,
+      telefono: this.pacienteForm.get('telefono')?.value,
+      mail: this.pacienteForm.get('mail')?.value,
+      direccion: this.pacienteForm.get('direccion')?.value,
+      fecha_nac: fechaNacAjustada, // No convertir a cadena, mantenlo como Date
+      password: this.pacienteForm.get('password')?.value,
+    };
+  
+    // Llamada al servicio para actualizar el paciente
+    this._pacienteService.updatePaciente(id, PACIENTE).subscribe(data => {
+      this.toastr.success('El paciente fue actualizado con éxito!', 'Paciente Registrado!');
+      this.router.navigate(['/list-paciente']);
+    }, error => {
+      console.log(error);
+      this.pacienteForm.reset();
+    });
+  }
+
 
 }

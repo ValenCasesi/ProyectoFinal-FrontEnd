@@ -3,3 +3,7 @@
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 2%;
 }
+.titulo{
+  font-size: 1.5rem;
+  font-weight: bold;
+}

@@ -4,7 +4,7 @@
     <div class="col-lg-10 offset-lg-1">
       <div class="card">
         <div class="card-body text-center table-responsive">
-          <span class="titulo">Listado de Pacientes</span>
+          <span class="titulo"><b>LISTADO DE PACIENTES</b></span>
           <button class="btn btn-success float-end" (click)="redireccion()" style="display: none;">Nuevo</button>
           <div *ngIf="listPacientes; else nohay" class="row mt-3">
             <div *ngFor="let paciente of listPacientes" class="col-md-4 mb-3">
@@ -20,7 +20,7 @@
                   <div class="d-flex justify-content-between">
                     <button class="btn btn-primary" [routerLink]="['/historial-paciente', paciente._id]">Historial</button>
                     <div>
-                      <i [routerLink]="['/editar-paciente', paciente._id]" class="fa-solid fa-pen-to-square text-primary me-2"></i>
+                      <a *ngIf="this.master=='true'" [routerLink]="['/editar-paciente', paciente._id]"><i class="fa-solid fa-pen-to-square text-primary me-2"></i></a>
                       <i (click)="eliminarPaciente(paciente._id)" class="fa-solid fa-trash text-danger"></i>
                     </div>
                   </div>

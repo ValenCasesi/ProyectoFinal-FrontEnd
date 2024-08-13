@@ -30,11 +30,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HistorialPacienteComponentComponent } from './components/Paciente/historial-paciente-component/historial-paciente-component.component';
 import { EditTurnoComponent } from './components/Turno/edit-turno/edit-turno.component';
 import { IndexComponent } from './components/Index/index/index.component';
+import { EditarPacienteComponent } from './components/Paciente/editar-paciente/editar-paciente.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CrearPacienteComponent,
+    EditarPacienteComponent,
     ListarPacientesComponent,
     MenuComponent,
     CreatePracticeComponent,
@@ -52,6 +54,7 @@ import { IndexComponent } from './components/Index/index/index.component';
     HistorialPacienteComponentComponent,
     EditTurnoComponent,
     IndexComponent,
+    EditarPacienteComponent,
   ],
   imports: [
     MdbCarouselModule,
