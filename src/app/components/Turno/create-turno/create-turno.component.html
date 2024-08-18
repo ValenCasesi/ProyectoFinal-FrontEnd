@@ -15,11 +15,15 @@
                     <span>
                       <h3 class="card-title">{{professional.nombre}} {{professional.apellido}}</h3>
                     </span>
-                    <span>
-                      <p>
-                        Este profesional atiende los dias: {{dayName}}
-                      </p>
-                    </span>
+                    <p *ngIf="listDias && listDias.length > 0">
+                      Este profesional atiende los días:
+                      <span *ngFor="let dia of listDias; let i = index">
+                        {{ dia }}<span *ngIf="i < listDias.length - 1">, </span>
+                      </span>
+                    </p>
+                    <p *ngIf="!listDias || listDias.length === 0">
+                      No hay días de atención disponibles.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -56,9 +60,6 @@
                           <thead>
                           <tr>
                             <th scope="col">Horarios Disponibles</th>
-                          </tr>
-                          <tr>
-                            <span>{{ this.dayName }}, {{ this.monthName }} {{ this.dayNumber }} </span>
                           </tr>
                           </thead>
                           <tbody>

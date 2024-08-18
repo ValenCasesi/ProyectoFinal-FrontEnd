@@ -19,6 +19,10 @@ export class ProfessionalService {
     return this.http.get<Professional[]>(this.url)
   }
 
+  getProfessionalDiasAtencion(id: string): Observable<any> {
+    return this.http.get(this.url + id + '/' + 'DiasAtencion')
+  }
+
   deleteProfessional(id: string): Observable<any> {
     return this.http.delete(this.url + id);
   }

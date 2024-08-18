@@ -28,7 +28,17 @@ export class CreateTurnoComponent implements OnInit {
   listId2: String[] = [];
   listPrac: Practice[] = [];
   listPaciente: Paciente[] = [];
+  listDias: String[] = [];
   errorString:string;
+  diasEnEspanol: { [key: string]: string } = {
+    'Sunday': 'Domingo',
+    'Monday': 'Lunes',
+    'Tuesday': 'Martes',
+    'Wednesday': 'Miércoles',
+    'Thursday': 'Jueves',
+    'Friday': 'Viernes',
+    'Saturday': 'Sábado'
+  };
   
 
   fechaForm: FormGroup;
@@ -76,7 +86,7 @@ export class CreateTurnoComponent implements OnInit {
     this.getPractica();
     this.getPaciente();
     this.getProfessionalByID(this.id);
-
+    this.getProfessionalDiasAtencion(this.id);
   }
 
 
@@ -246,6 +256,27 @@ export class CreateTurnoComponent implements OnInit {
       )
     }
   }
+  getProfessionalDiasAtencion(_id: any) {
+    if (_id !== null) {
+      this._profService.getProfessionalDiasAtencion(_id).subscribe(
+        (res: any) => {
+          // Asegúrate de acceder a la propiedad 'diasAtencion'
+          if (Array.isArray(res.diasAtencion)) {
+            // Especifica el tipo del parámetro 'dia'
+            this.listDias = res.diasAtencion.map((dia: string) => this.diasEnEspanol[dia] || dia);
+          } else {
+            console.error('Error: la respuesta no contiene un array en diasAtencion:', res);
+            this.listDias = [];
+          }
+        }, 
+        error => {
+          console.log(error);
+        }
+      );
+    }
+  }
+
+
 }
 
 
